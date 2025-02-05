@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Check if at least one argument is provided
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <program> [args...]"
+    exit 1
+fi
+
+# The first argument is the program to launch
+PROGRAM_NAME="$1"
+shift
+
+# Check if the program is already running
+if pgrep -x "$PROGRAM_NAME" > /dev/null; then
+    killall $PROGRAM_NAME
+fi
+
+# Launch the program with the provided arguments
+"$PROGRAM_NAME" "$@" &
+
+echo "$PROGRAM_NAME launched with arguments: $@"

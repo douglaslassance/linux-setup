@@ -12,10 +12,14 @@
   // ],
   "modules-right": [
     "tray",
-    // "hyprland/language",
     "cpu",
-    "custom/weather",
+    "memory",
+    "network",
+    "bluetooth",
+    "pulseaudio",
     "battery",
+    "hyprland/language",
+    "custom/weather",
     "clock"
   ],
   "wlr/taskbar": {
