@@ -1,59 +1,72 @@
 {
-  "layer": "top",
-  "position": "top",
-  "height": 32,
-  "spacing": 16,
-  "modules-left": [
-    "hyprland/workspaces"
-    // "wlr/taskbar"
-  ],
-  // "modules-center": [
-  //   "hyprland/window"
-  // ],
-  "modules-right": [
-    "tray",
-    "cpu",
-    "memory",
-    "network",
-    "bluetooth",
-    "pulseaudio",
-    "battery",
-    "hyprland/language",
-    "custom/weather",
-    "clock"
-  ],
-  "wlr/taskbar": {
-    "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": [
-      "foot"
-    ]
-  },
+  "layer": "top", // Waybar at top layer
+  "position": "top", // Waybar position (top|bottom|left|right)
+  // "width": 1280, // Waybar width
+  // Choose the order of the modules
+  // "modules-left": ["wlr/workspaces"],
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["custom/music"],
+  "modules-right": ["pulseaudio", "backlight", "battery", "clock", "tray", "custom/lock", "custom/power"],
   "wlr/workspaces": {
-    "on-click": "activate",
-    "on-scroll-up": "hyprctl dispatch workspace e-1",
-    "on-scroll-down": "hyprctl dispatch workspace e+1"
+       "disable-scroll": true,
+       "sort-by-name": true,
+       "format": " {icon} ",
+       "format-icons": {
+           "default": "",
+       },
+   },
+  "tray": {
+      "icon-size": 21,
+      "spacing": 10
   },
-  "hyprland/window": {
-    "max-length": 128
+  "custom/music": {
+      "format": "  {}",
+      "escape": true,
+      "interval": 5,
+      "tooltip": false,
+      "exec": "playerctl metadata --format='{{ title }}'",
+      "on-click": "playerctl play-pause",
+      "max-length": 50
   },
   "clock": {
-    "format": "{:%c}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+      "timezone": "Asia/Dubai",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": " {:%d/%m/%Y}",
+      "format": " {:%H:%M}"
   },
-  "tray": {
-    "spacing": 4
+  "backlight": {
+      "device": "intel_backlight",
+      "format": "{icon}",
+      "format-icons": ["", "", "", "", "", "", "", "", ""]
   },
-  "custom/weather": {
-    "exec": "~/.config/waybar/wittr.sh",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "interval": 900
+  "battery": {
+      "states": {
+          "warning": 30,
+          "critical": 15
+      },
+      "format": "{icon}",
+      "format-charging": "",
+      "format-plugged": "",
+      "format-alt": "{icon}",
+      "format-icons": ["", "",  "", "", "", "", "", "", "", "", "", ""]
   },
-  "hyprland/language": {
-    "format-pl": "[pl]",
-    "format-en": "[us]",
-    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
+  "pulseaudio": {
+      // "scroll-step": 1, // %, can be a float
+      "format": "{icon} {volume}%",
+      "format-muted": "",
+      "format-icons": {
+          "default": ["", "", " "]
+      },
+      "on-click": "pavucontrol"
+  },
+  "custom/lock": {
+      "tooltip": false,
+      "on-click": "sh -c '(sleep 0.5s; swaylock --grace 0)' & disown",
+      "format": "",
+  },
+  "custom/power": {
+      "tooltip": false,
+      "on-click": "wlogout &",
+      "format": "襤"
   }
 }
