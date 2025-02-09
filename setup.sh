@@ -42,7 +42,6 @@ gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
 gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
 
 temp_dir=$(mktemp -d)
-echo TEMP $temp_dir
 wget -P "$temp_dir" https://github.com/dracula/gtk/files/5214870/Dracula.zip
 rm -rf ~/.icons/Dracula
 unzip "$temp_dir/Dracula.zip" -d ~/.icons
