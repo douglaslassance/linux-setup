@@ -18,6 +18,9 @@ rm -rf ~/.config/kitty
 chmod +x $script_path/home/.local/bin/*
 ln -sdf $script_path/home/.local/bin ~/.local
 
+# Link font folder.
+ln -sdf $script_path/home/.local/share/fonts ~/.local/share
+
 # Link configurations
 ln -sdf $script_path/home/.config/hypr ~/.config
 ln -sdf $script_path/home/.config/waybar ~/.config
