@@ -24,6 +24,7 @@ sh ./setup.sh
 - Install Spotify.
 - Install Steam.
 - Install Proton Drive.
+- Install Stremio.
 
 # Connecting a Bluetooth device
 
