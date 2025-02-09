@@ -29,3 +29,22 @@ ln -sdf $script_path/home/.config/kitty ~/.config
 
 # Get wallpapers.
 git clone https://github.com/aynp/dracula-wallpapers.git ~/Pictures/Wallpapers
+
+# Setup GTK theme.
+# https://draculatheme.com/gtk
+git clone https://github.com/dracula/gtk.git ~/.themes/Dracula
+
+ln -sdf ~/.themes/Dracula/assets ~/.config
+ln -sf ~/.themes/Dracula/gtk-4.0/gtk.css ~/.config/gtk-4.0
+ln -sf ~/.themes/Dracula/gtk-4.0/gtk-dark.css ~/.config/gtk-4.0
+
+gsettings set org.gnome.desktop.interface gtk-theme "Dracula"
+gsettings set org.gnome.desktop.wm.preferences theme "Dracula"
+
+temp_dir=$(mktemp -d)
+echo TEMP $temp_dir
+wget -P "$temp_dir" https://github.com/dracula/gtk/files/5214870/Dracula.zip
+rm -rf ~/.icons/Dracula
+unzip "$temp_dir/Dracula.zip" -d ~/.icons
+
+gsettings set org.gnome.desktop.interface icon-theme "Dracula"
