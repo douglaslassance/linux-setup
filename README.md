@@ -16,6 +16,7 @@ sh ./setup.sh
 - Support three finger drag.
 - Toggle `fn` modifier.
 - Lower trackpad scroll sensitivty.
+- Configure custom cursor.
 - Setup global scroll inertia.
 - Swap to running instances when launching with `wofi`.
 - Install Signal.
