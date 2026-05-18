@@ -8,6 +8,9 @@
 # Get the absolute path of the script
 script_path=$(dirname $(realpath "$0"))
 
+# Initialize submodules.
+git -C "$script_path" submodule update --init --recursive
+
 # Clear configurations
 rm -rf ~/.config/hypr
 rm -rf ~/.config/waybar
@@ -47,3 +50,6 @@ rm -rf ~/.icons/Dracula
 unzip "$temp_dir/Dracula.zip" -d ~/.icons
 
 gsettings set org.gnome.desktop.interface icon-theme "Dracula"
+
+# Run config setup.
+sh "$script_path/config/setup.sh"
